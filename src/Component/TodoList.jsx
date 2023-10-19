@@ -5,6 +5,7 @@ import Card from './Card.jsx'
 export default function TodoList() {
   const [modal, setModal] = useState(false)
   const [taskList, setTaskList] = useState([])
+  const toggle = () => setModal(!modal)
 
   useEffect(() => {
     let arr = localStorage.getItem('taskList')
@@ -13,16 +14,14 @@ export default function TodoList() {
       setTaskList(obj)
     }
   }, [])
-  const deleteTask =(index)=>{
+
+  const deleteTask = (index) => {
     let updateTaskList = taskList
     updateTaskList.splice(index, 1)
     localStorage.setItem('taskList', JSON.stringify(updateTaskList))
     setTaskList(updateTaskList)
     window.location.reload()
   }
-        
-
-  const toggle = () => setModal(!modal)
 
   const saveTask = (taskObj) => {
     let updateTaskList = [...taskList]
@@ -31,6 +30,7 @@ export default function TodoList() {
     setTaskList(updateTaskList)
     setModal(false)
   }
+
   const updateListArray = (obj, index) => {
     let updateTaskList = [...taskList]
     updateTaskList[index] = obj
@@ -52,18 +52,25 @@ export default function TodoList() {
           create Task
         </button>
       </div>
-      <div className="task container">
-        {taskList &&
-          taskList.map((obj, index) => (
-            <Card
-              taskObj={obj}
-              index={index}
-              key={index}
-              deleteTask={deleteTask}
-              updateListArray={updateListArray}
-            />
-          ))}
+
+      <div className=" task-container">
+        <div className="row g-4">
+          {taskList &&
+            taskList.map((obj, index) => (
+              <div className="col-4">
+                <Card
+                  taskObj={obj}
+                  index={index}
+                  key={index}
+                  deleteTask={deleteTask}
+                  updateListArray={updateListArray}
+
+                />
+              </div>
+            ))}
+        </div>
       </div>
+
       <CreateTask toggle={toggle} modal={modal} save={saveTask} />
     </>
   )

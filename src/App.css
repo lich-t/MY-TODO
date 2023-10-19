@@ -3,8 +3,24 @@
     width: 100%;
     background-color:  #e9eef6; 
     padding-top: 50px;
-
 }
+
+/* container */
+.task-container{
+  height: 600px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #F6F7F8;
+  padding : 40px 100px;
+}
+
+/* card */
+
+.card-header{
+  padding-left: 0ch;
+}
+
 .card-container{
   height: 300px;
   width: 300px;
@@ -41,14 +57,4 @@
   text-align: center;
 }
 
-.task-container{
-  height: 600px;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #F6F7F8;
-  padding : 40px 100px;
-}
-.card-header{
-  padding-left: 0ch;
-}
+
